@@ -1,0 +1,1 @@
+Install mysql and use with host: localhost, username: root, password: admin321.
