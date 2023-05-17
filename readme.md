@@ -1,1 +1,5 @@
-Install mysql and use with host: localhost, username: root, password: admin321.
+Install mysql
+
+Run /database/database.sql to create database and tables
+
+Go to /database/db_connection.php and change user & password of database
