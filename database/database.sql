@@ -1,4 +1,4 @@
-Create database Real_Estate_Agency;
+Create database Alb_Juris;
 
 CREATE TABLE
   `Users` (

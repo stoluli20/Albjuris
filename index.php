@@ -133,10 +133,8 @@
     <p>Welcome to our bookshop, where you can explore a wide range of books across different genres. Whether you're a book lover or looking for a perfect gift, we have something for everyone.</p>
     <p>Visit our bookstore today and discover the joy of reading!</p>
   </section>
+  <?php require("html/footer.html"); ?>
 </div>
-
-
-<?php require("html/footer.html"); ?>
-  </div>
+</div>
 </body>
 </html>
