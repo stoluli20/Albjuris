@@ -1,22 +1,32 @@
 <?php
 session_start();
-include __DIR__. '/../database/db_connection.php' ;							
-if(!isset($_SESSION['id']) and !isset($_SESSION['admin_name'])){
-    header("Location: login.php");
-    exit;
+include __DIR__. '/../database/db_connection.php' ;		
+
+function profile($con){
+    if(!isset($_SESSION['id']) and !isset($_SESSION['admin_name'])){
+        header("Location: login.php");
+        exit;
+    }
+    if(isset($_SESSION['admin_name'])){
+        include ('admin_dashboard.php');
+        $query = "SELECT * from Users";
+        $result=mysqli_query($con, $query);
+        return ['user' => 'admin', 'result' => $result];
+    }
+    else{
+        include ('dashboard.php');
+        $id = $_SESSION['id'];
+        $query = "SELECT * from Users WHERE id = '$id'";
+        $result=mysqli_query($con, $query);
+        $row=mysqli_fetch_array($result);
+        return ['user' =>  'user', 'row' => $row];
+    }
 }
-if(isset($_SESSION['admin_name'])){
-    include ('admin_dashboard.php');
-    $query = "SELECT * from Users";
-    $result=mysqli_query($con, $query);
-}
-else{
-    include ('dashboard.php');
-    $id = $_SESSION['id'];
-    $query = "SELECT * from Users WHERE id = '$id'";
-    $result=mysqli_query($con, $query);
-    $row=mysqli_fetch_array($result);
-}
+
+$profile = profile($con);
+if($profile['user'] == 'admin') $result = $profile['result'];
+else $row = $profile['row'];
+
 ?>
 <style>
             .my_properties{

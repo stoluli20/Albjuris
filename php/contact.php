@@ -6,9 +6,12 @@
         $message = $_REQUEST['text'];
         if($name!="" and $email!="" and $message!=""){
         $query = "INSERT INTO Contact (Name, Email, Message) VALUES ('$name', '$email', '$message')";
-        mysqli_query($con, $query);
-        header("Location: contact.php");
+        $result = mysqli_query($con, $query);
+        if($result) {
+          echo "<script> document.write('Your message was sent successfully!'); </script>";
         }
+        }
+        header('location:contact.php');
       }
 ?>
 
@@ -22,7 +25,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   </head>
   <body>
-    <?php require __DIR__ . '/../html/header.html';?>
+    <?php require __DIR__ . '/../html/header.html';       
+    ?>
     <div style="text-align:center;" class="jumbotron bg-secondary">
       <h1 class="display-4 text-white">Contact Us</h1>
       <p class="lead text-white">If you have any particular questions you want to ask or just contact us for more information, use the form below.</p>
@@ -41,7 +45,8 @@
 </body>
 </html>
 <style>
-form { 
+  <?php require __DIR__. '/../html/style.css'; ?>
+/* form { 
     max-width:420px; margin:50px auto; 
 }
 
@@ -85,5 +90,5 @@ textarea {
   margin-top:-4px;
   font-weight:700;
 }
-[type="submit"]:hover { background:#5d5c5c; }
+[type="submit"]:hover { background:#5d5c5c; } */
 </style>

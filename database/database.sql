@@ -15,20 +15,7 @@ CREATE TABLE
     `user` VARCHAR(255) not null,
     `password` VARCHAR(255) not null
   );
-  create table
-  `Properties` (
-    `id` int unsigned not null auto_increment primary key,
-    `Name` varchar(255) not null,
-    `Bedrooms` INT not null,
-    `Kitchen` INT not null,
-    `Bathrooms` INT not null,
-    `Square` DOUBLE not null,
-    `Price` DOUBLE not null,
-    `Air_Conditioner` int not null, 
-    `uemail` varchar(255) not null,
-    `property_image` varchar(255) not null
-  );
-
+  
   create table
   `Contact`(
     `id` int unsigned not null auto_increment primary key,
