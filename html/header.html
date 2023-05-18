@@ -1,23 +1,47 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" type="text/css" href='/Web_Project/css/main.css'>
-        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-    </head>
-    <body>
-        <header>
-        <div class="example">
-            <div class="one">
-                <a href="/Web_Project/php"><h2 >Real Estate Agency</h2></a>
-            </div>
-            <div class="two">
-                <a href="/Web_Project/php">Home</a>
-                <a href="/Web_Project/php/profile.php">Profile</a>
-                <a href="/Web_Project/php/properties.php">Properties</a>
-                <a href="/Web_Project/php/about.php">About</a>
-                <a href="/Web_Project/php/contact.php">Contact us</a>
-            </div>
-        </div>
-        </header>
-    </body>
+<!DOCTYPE html> 
+
+<html lang="en">
+
+<head>
+    <title>Alb Juris</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Alb Juris</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Books</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Subscriptions</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Profile
+                </a>
+                <div class="dropdown-menu" aria-labelledby="profileDropdown">
+                    <a class="dropdown-item" href="#">Log In</a>
+                    <a class="dropdown-item" href="#">Register</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Include Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
 </html>
