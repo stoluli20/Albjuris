@@ -17,7 +17,7 @@ class Register{
             
             $name = $_REQUEST['name'];
             $email=$_REQUEST['email'];
-            $pass=$_REQUEST['pass'];
+            $pass=$_REQUEST['password'];
             $number=$_REQUEST['number'];
     
         
@@ -79,33 +79,16 @@ if(isset($_REQUEST['register'])){
 <?php  require __DIR__. '/../html/header.html'; ?>
 <html>
     <body>
-        <div class="profile_form login">
-        <form method="POST"> 
-        <h1>Sign Up</h1>
-        <?php echo $_SESSION['error']?> <?php echo $_SESSION['message'] ?>
-               <table class="login_table">
-               <tr>
-                    <td class="credentials">Name:</td>
-                    <td class="field"><input type="name" name = "name" autofocus /></td>
-                </tr>
-                <tr>
-                    <td class="credentials">Email:</td>
-                    <td class="field"><input type="text" name = "email" /></td>
-                </tr>
-                <tr>
-                    <td class="credentials">Password:</td>
-                    <td class="field"><input type="password" name = "pass" /></td>
-                </tr>
-                <tr>
-                    <td class="credentials">Phone Number:</td>
-                    <td class="field"><input type="tel" name = "number" /></td>
-                </tr>  
-                <tr>
-                    <td id="sub-but" colspan="2"><input class="submit" type="submit" value="Register" name="register"/></td>
-                </tr>   
-            </table>
-        </form>
-        </div>
+        <style><?php require __DIR__. '/../html/style.css'; 
+                     require __DIR__. '/../html/registerStyle.css'; 
+        ?></style>
+        <div class="page-container">
+        <?php require __DIR__. '/../html/register.html'; ?>
+        <script>
+            var error = <?php echo json_encode($_SESSION['error']); ?>;
+            message(error);
+        </script>
         <?php require __DIR__ . '/../html/footer.html'; ?>
+</div>
     </body>
 </html>

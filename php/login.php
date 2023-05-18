@@ -1,12 +1,13 @@
 <?php
 require __DIR__. '/../html/header.html';
+
 session_start();
 include __DIR__.'/../database/db_connection.php';
 $_SESSION['uemail'] = NULL;
 $_SESSION['id'] = NULL;
 $_SESSION['admin_name'] = NULL;
 $_SESSION['error'] = NULL;
-
+$_SESSION['message'] = NULL;
 
 class Login{
 
@@ -60,13 +61,18 @@ if(isset($_REQUEST['login']))
 ?>
 <html>
     <style>
-        <?php require __DIR__. '/../html/style.css'; ?>
+        <?php require __DIR__. '/../html/style.css'; 
+              require __DIR__. '/../html/loginStyle.css';  
+        ?>
     </style>
     <body>
         <div class="page-container">
         <?php require __DIR__ . '/../html/login.html'; ?>
         <script>
-            var error = <?php echo json_encode($_SESSION['error']); ?>;
+            <?php if($_SESSION['error'] != NULL) $message = $_SESSION['error']; 
+                  if($_SESSION['message'] != NULL) $message = $_SESSION['message'];  
+            ?> 
+            var error = <?php echo json_encode($message); ?>;
             message(error);
         </script>
         <?php require __DIR__ . '/../html/footer.html'; ?>

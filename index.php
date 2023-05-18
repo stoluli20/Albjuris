@@ -121,9 +121,9 @@
 <?php require("html/header.html"); ?>
 
   <div class="slideshow" id="slideshow">
-    <img src="image1.jpg" class="active">
-    <img src="image2.jpg">
-    <img src="image3.jpg">
+    <img src="uploads/image1.jpg" class="active">
+    <img src="uploads/image2.jpg">
+    <img src="uploads/image3.jpg">
     <div class="slideshow-caption" id="slideshow-caption"></div>
   </div>
 
