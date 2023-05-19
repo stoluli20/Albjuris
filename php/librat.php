@@ -88,7 +88,7 @@
 
 <body>
     <?php
-    require '../html/header.html';
+    require '../html/header.php';
     require "db.php";
 
     function query($result)

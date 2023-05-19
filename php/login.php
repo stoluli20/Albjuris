@@ -1,7 +1,7 @@
 <?php
-session_start();
+
 require("db.php");
-require '../html/header.html';
+require '../html/header.php';
 
 // Check if the user is already logged in
 if (isset($_SESSION['email'])) {

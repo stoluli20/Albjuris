@@ -87,8 +87,9 @@
 
 <body>
     <?php
-     require '../html/header.html';
+     
     include('db.php');
+    require '../html/header.php';
     ?>
     <div class="wrapper">
         <div class="container mt-4">

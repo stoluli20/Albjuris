@@ -1,5 +1,5 @@
 <?php
-require '../html/header.html';
+require '../html/header.php';
 include_once("db.php");
 
 // Check if the user is already logged in

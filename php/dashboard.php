@@ -1,6 +1,6 @@
 <?php
 
-require '../html/header.html';
+require '../html/header.php';
 
 // Check if the user is logged in
 

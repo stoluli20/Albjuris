@@ -1,3 +1,5 @@
+<?php  session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,12 +57,12 @@
                         <a class="nav-link" href="./php/librat.php">Books</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Subscriptions</a>
+                        <a class="nav-link" href="./php/subscriptions.php">Subscriptions</a>
                     </li>
                     <li class="nav-item dropdown">
                         <?php
                         // Check if the user is logged in
-                        session_start();
+                       
                         if (isset($_SESSION['email'])) {
                             // User is logged in, display "Dashboard" and "Log Out"
                             echo '
