@@ -1,81 +1,83 @@
 <?php
-require __DIR__. '/../html/header.html';
-
 session_start();
-include __DIR__.'/../database/db_connection.php';
-$_SESSION['uemail'] = NULL;
-$_SESSION['id'] = NULL;
-$_SESSION['admin_name'] = NULL;
-$_SESSION['error'] = NULL;
-$_SESSION['message'] = NULL;
+require("db.php");
+require '../html/header.html';
 
-class Login{
+// Check if the user is already logged in
+if (isset($_SESSION['email'])) {
+    header("Location: profile.php");
+    exit();
+}
 
-    private $con;
+if (isset($_POST['email'])) {
+    $email = stripslashes($_POST['email']);
+    $email = mysqli_real_escape_string($con, $email);
+    $password = stripslashes($_POST['password']);
+    $password = mysqli_real_escape_string($con, $password);
 
-    public function __construct($con){
-        $this->con = $con;
+
+    $query = "SELECT * FROM `users` WHERE email='$email'";
+    $result = mysqli_query($con, $query);
+    if (mysqli_connect_errno()) {
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
     }
+    $rows = mysqli_num_rows($result);
+    if ($rows == 1) {
+        $user = mysqli_fetch_assoc($result);
+        if (password_verify($password, $user['password'])) {
+            // Password is correct, log in the user
 
-    public function login(){
-        $email=$_REQUEST['email'];
-        $pass=$_REQUEST['password'];
-        
-        if($email == "" || $pass == ""){
-            $_SESSION['error'] = "<p class='alert'>Please type your email and password!</p>";
-            return False;
+            $_SESSION['email'] = $email;
+            $_SESSION['userid'] = $user['userid'];
+            /*  if ($user['email'] == "krapaj20@epoka.edu.al" ) {
+                $_SESSION['admin'] = true;
+                header("Location: admin.php");
+                exit();
+            } else */
+            header("Location: profile.php");
+            exit();
+
+        } else {
+            echo "<div class='form'>
+                <h3>Incorrect password.</h3><br/>
+                <p class='link'>Click here to <a href='login.php'>try again</a>.</p>
+                </div>";
         }
-
-        $pass= sha1($pass);
-
-        $sql = "SELECT * FROM Users where uemail='$email' && upassword='$pass'";
-		$result=mysqli_query($this->con, $sql);
-		$row=mysqli_fetch_array($result);
-
-        if(!$row){
-            $_SESSION['error'] = "<p class='alert'>Email or password is incorrect!</p>";
-            return False;
-        }
-
-        $_SESSION['id'] = $row['id'];
-        $_SESSION['email'] = $email;
-
-        return True;
+    } else {
+        echo "<div class='form'>
+            <h3>Invalid username or email address.</h3><br/>
+            <p class='link'>Click here to <a href='login.php'>try again</a>.</p>
+            </div>";
     }
-}
-
-if(isset($_SESSION['id'])){
-    header('location:profile.php');
-    exit;
-}
-
-if(isset($_REQUEST['login']))
-{
-    $login = new Login($con);
-    $login = $login->login();
-    if($login){
-        header("location:profile.php");
-        exit;
-    }
-}
+} else {
 ?>
-<html>
-    <style>
-        <?php require __DIR__. '/../html/style.css'; 
-              require __DIR__. '/../html/loginStyle.css';  
-        ?>
-    </style>
-    <body>
-        <div class="page-container">
-        <?php require __DIR__ . '/../html/login.html'; ?>
-        <script>
-            <?php if($_SESSION['error'] != NULL) $message = $_SESSION['error']; 
-                  if($_SESSION['message'] != NULL) $message = $_SESSION['message'];  
-            ?> 
-            var error = <?php echo json_encode($message); ?>;
-            message(error);
-        </script>
-        <?php require __DIR__ . '/../html/footer.html'; ?>
-    </div>
-    </body>
-</html>
+   <div class="container mt-4">
+    <form class="form-sm" method="post" name="login">
+    <h1 class="login-title">Log In</h1>
+        <div class="form-group row">
+            <label for="email" class="col-sm-2 col-form-label">Email Address</label>
+            <div class="col-sm-10">
+                <input type="text" name="email" id="email" class="form-control" autofocus="true" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="password" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+                <input type="password" name="password" id="password" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="offset-sm-2 col-sm-10">
+                <input type="submit" value="Login" name="submit" class="btn btn-primary" />
+            </div>
+        </div>
+        <p class="link text-center"><a href="register.php">New Registration</a></p>
+    </form>
+</div>
+
+
+<?php
+}
+
+require '../html/footer.html';
+?>

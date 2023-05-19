@@ -10,10 +10,10 @@ include 'db.php'; ?>
   <!-- Include Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
   <style>
-
-body {
-        font-family: 'Circular', sans-serif !important;
+    body {
+      font-family: 'Circular', sans-serif !important;
     }
+
     /* Customize carousel height */
     .section-books .carousel {
       height: 400px;
@@ -59,10 +59,10 @@ body {
       text-align: center;
     }
 
-.d-flex{
-  margin-left:100px;
-  margin-right:100px;
-}
+    .d-flex {
+      margin-left: 100px;
+      margin-right: 100px;
+    }
 
     .carousel-control-prev,
     .carousel-control-next {
@@ -113,39 +113,40 @@ body {
       background-color: #fff;
       color: #000000;
     }
+
     .btn-primary {
-      border-color:#fff;
+      border-color: #fff;
     }
 
-    .btn-primary:hover{
-      border-color:#000000;
+    .btn-primary:hover {
+      border-color: #000000;
     }
 
     .section-about-us {
       background-color: #000000;
       padding: 60px 0;
-      margin-top:60px;
+      margin-top: 60px;
     }
 
     .section-about-us .container {
       max-width: 800px;
       margin: 0 auto;
       text-align: center;
-    
+
     }
 
     .section-about-us h2 {
       font-size: 32px;
       margin-bottom: 30px;
-      color:#fff;
+      color: #fff;
     }
 
     .section-about-us p {
       font-size: 18px;
       line-height: 1.6;
       margin-bottom: 20px;
-      
-      color:#fff;
+
+      color: #fff;
     }
   </style>
 
@@ -162,75 +163,75 @@ body {
 
   <!-- Second Section: Carousel with Books -->
   <section class="section-books">
-  <div class="container">
-    <h2 style="text-align: center; margin-top: 50px">Books</h2>
-    <div id="booksCarousel" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <div class="d-flex justify-content-center"> <!-- Added wrapping div -->
-            <?php
-            // Replace 'your-database-connection' with your actual database connection code
+    <div class="container">
+      <h2 style="text-align: center; margin-top: 50px">Books</h2>
+      <div id="booksCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="d-flex justify-content-center"> <!-- Added wrapping div -->
+              <?php
+              // Replace 'your-database-connection' with your actual database connection code
 
-            // Fetch all books from the database
-            $books = $con->query("SELECT * FROM books");
+              // Fetch all books from the database
+              $books = $con->query("SELECT * FROM books");
 
-            // Set a flag to track the active carousel item
-            $active = true;
+              // Set a flag to track the active carousel item
+              $active = true;
 
-            // Counter to keep track of the number of books
-            $bookCount = 0;
+              // Counter to keep track of the number of books
+              $bookCount = 0;
 
-            // Iterate over each book and generate carousel item
-            foreach ($books as $book) {
-              // Extract book details
-              $bookId = $book['id'];
-              $bookImage = $book['image'];
+              // Iterate over each book and generate carousel item
+              foreach ($books as $book) {
+                // Extract book details
+                $bookId = $book['id'];
+                $bookImage = $book['image'];
 
-              // Set the active class for the first carousel item
-              $activeClass = $active ? 'active' : '';
+                // Set the active class for the first carousel item
+                $activeClass = $active ? 'active' : '';
 
-              // Open a new carousel item every 3 books
-              if ($bookCount % 3 == 0) {
-                echo '<div class="d-flex">';
+                // Open a new carousel item every 3 books
+                if ($bookCount % 3 == 0) {
+                  echo '<div class="d-flex">';
+                }
+              ?>
+                <div class="book-card">
+                  <a href="book.php?id=<?php echo $bookId; ?>"><img src="./images/<?php echo $bookImage; ?>" alt="Book"></a>
+                  <a href="book.php?id=<?php echo $bookId; ?>" class="btn btn-primary btn-sm">Read More</a>
+                </div>
+              <?php
+                // Close the carousel item every 3 books
+                if ($bookCount % 3 == 2) {
+                  echo '</div>';
+                }
+
+                // Increment the book counter
+                $bookCount++;
+
+                // Set the active flag to false after the first carousel item
+                $active = false;
               }
-            ?>
-              <div class="book-card">
-                <a href="book.php?id=<?php echo $bookId; ?>"><img src="./images/<?php echo $bookImage; ?>" alt="Book"></a>
-                <a href="book.php?id=<?php echo $bookId; ?>" class="btn btn-primary btn-sm">Read More</a>
-              </div>
-            <?php
-              // Close the carousel item every 3 books
-              if ($bookCount % 3 == 2) {
+
+              // Close the carousel item if the last book count is not divisible by 3
+              if ($bookCount % 3 != 0) {
                 echo '</div>';
               }
-
-              // Increment the book counter
-              $bookCount++;
-
-              // Set the active flag to false after the first carousel item
-              $active = false;
-            }
-
-            // Close the carousel item if the last book count is not divisible by 3
-            if ($bookCount % 3 != 0) {
-              echo '</div>';
-            }
-            ?>
+              ?>
+            </div>
           </div>
         </div>
+        <!-- Add carousel controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#booksCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#booksCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
       </div>
-      <!-- Add carousel controls -->
-      <button class="carousel-control-prev" type="button" data-bs-target="#booksCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#booksCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
     </div>
-  </div>
-</section>
+  </section>
 
 
 

@@ -1,94 +1,78 @@
 <?php
-session_start();
-include __DIR__ . '/../database/db_connection.php';
+require '../html/header.html';
+include_once("db.php");
 
-$_SESSION['error'] = NULL;
-$_SESSION['message'] = NULL;
-
-class Register{
-
-    private $con;
-
-    public function __construct($con){
-        $this->con = $con;
-    }
-
-    function register(){
-            
-            $name = $_REQUEST['name'];
-            $email=$_REQUEST['email'];
-            $pass=$_REQUEST['password'];
-            $number=$_REQUEST['number'];
-    
-        
-            if( $name == "" || $email == "" || $pass == "" || $number == ""){
-                $_SESSION['error'] = "<p class='alert'>Please fill all the fields!</p>";
-                return False;
-            }
-            
-            $query = "Select * from Users where uemail = '$email'";
-            $result = mysqli_query($this->con, $query);
-            $row = mysqli_fetch_array($result);   
-           
-            if(isset($row)){
-                $_SESSION['error'] = "<p class='alert'>Error, user exists! Email is used!</p>";
-                return False;
-            }
-        
-            $var = filter_var($email, FILTER_VALIDATE_EMAIL);
-        
-            if($var == NULL){
-                $_SESSION['error'] = "<p class='alert'>Email is invalid! Please use another one!</p>";
-                return False;
-            }
-        
-            if(strlen($pass) < 8){
-                $_SESSION['error'] = "<p class='alert'>Password must be at least 8 characters long!</p>";
-                return False;
-            }
-        
-            if(strlen($number) != 10 || !is_numeric($number)){
-                $_SESSION['error'] = "<p class='alert'>Please check your phone number!</p>";
-                return False;
-            }
-        
-            $pass = sha1($pass);
-            $query = "INSERT INTO `Users` (uname, uemail, upassword, uphone) VALUES ('$name', '$email', '$pass', '$number')";
-            $result=mysqli_query($this->con, $query);
-            if($result){
-                $_SESSION['message'] = "<p class='success'>Account created successfully! You can log in now!</p>";
-                return True;
-            }
-            else{
-                $_SESSION['error'] = "<p class='alert'>There was a problem with server while creating account! Try again later!</p>";
-                return False;
-            }
-    }
+// Check if the user is already logged in
+if (isset($_SESSION['email'])) {
+    header('Location: ./index.php');
+    exit();
 }
 
-if(isset($_REQUEST['register'])){
-    $register = new Register($con);
-    $register = $register->register();
-    if($register){
-        header("location:login.php");
-        exit;
-    }
-}
+if (isset($_REQUEST['email'])) {
+    $username = stripslashes($_REQUEST['username']);
+    //escapes special characters in a string
+    $username = mysqli_real_escape_string($con, $username);
+    $email    = stripslashes($_REQUEST['email']);
+    $email    = mysqli_real_escape_string($con, $email);
+    $password = stripslashes($_REQUEST['password']);
+    $password = mysqli_real_escape_string($con, $password);
+    $name     = stripslashes($_REQUEST['firstname']);
+    $name     = mysqli_real_escape_string($con, $name);
+    $surname  = stripslashes($_REQUEST['lastname']);
+    $surname  = mysqli_real_escape_string($con, $surname);
+    $reg_date = date("Y-m-d H:i:s");
 
+    $query  = "SELECT * FROM `users` WHERE email='$email'";
+    $result = mysqli_query($con, $query);
+    $rows   = mysqli_num_rows($result);
+    if ($rows == 0) {
+        // Register new user
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $query           = "INSERT into `users` (firstname, lastname, email, username, password, reg_date)
+			VALUES ('$name', '$surname', '$email', '$username', '$hashed_password', '$reg_date')";
+        $result          = mysqli_query($con, $query);
+        if ($result) {
+            $_SESSION['email'] = $email;
+            // Redirect to user dashboard page
+            header("Location: login.php");
+        } else {
+            echo "<div class='form'>
+					<h3>Registration failed.</h3><br/>
+					<p class='link'>Click here to <a href='signup.php'>try again</a>.</p>
+					</div>";
+        }
+    } else {
+        echo "<div class='form'>
+				<h3>Email already taken.</h3><br/>
+				<p class='link'>Please log in instead.</p>
+				<p class='link'>Click here to <a href='login.php'> log in</a>.</p>
+				</div>";
+    }
+} else {
+    ?>
+    <div class="container mt-4">
+        <form class="form-registration" method="post" name="registration">
+            <h1 class="register-title">Registration</h1>
+            <div class="form-group">
+                <input type="text" name="firstname" placeholder="First Name" autofocus="true" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="text" name="lastname" placeholder="Last Name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="text" name="username" placeholder="Username" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="text" name="email" placeholder="Email Address" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" placeholder="Password" class="form-control" />
+            </div>
+            <input type="submit" value="Register" name="submit" class="btn btn-primary" />
+            <p class="link text-center"><a href="login.php">Already have an account?</a></p>
+        </form>
+    </div>
+<?php
+require '../html/footer.html';
+}
 ?>
-<?php  require __DIR__. '/../html/header.html'; ?>
-<html>
-    <body>
-        <style><?php require __DIR__. '/../html/style.css'; 
-                     require __DIR__. '/../html/registerStyle.css'; 
-        ?></style>
-        <div class="page-container">
-        <?php require __DIR__. '/../html/register.html'; ?>
-        <script>
-            var error = <?php echo json_encode($_SESSION['error']); ?>;
-            message(error);
-        </script>
-        <?php require __DIR__ . '/../html/footer.html'; ?>
-</div>
-    </body>
-</html>
