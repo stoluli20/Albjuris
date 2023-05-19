@@ -3,6 +3,12 @@
     "development"
   ],
   "hints": {
-    "meta-charset-utf-8": "off"
+    "meta-charset-utf-8": "off",
+    "axe/text-alternatives": [
+      "default",
+      {
+        "frame-title": "off"
+      }
+    ]
   }
 }

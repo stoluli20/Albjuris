@@ -1,6 +1,4 @@
-
 <!DOCTYPE html> 
-
 <html lang="en">
 
 <head>
@@ -12,33 +10,35 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Alb Juris</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Books</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Subscriptions</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Profile
-                </a>
-                <div class="dropdown-menu" aria-labelledby="profileDropdown">
-                    <a class="dropdown-item" href="#">Log In</a>
-                    <a class="dropdown-item" href="#">Register</a>
-                </div>
-            </li>
-        </ul>
+    <div class="container">
+        <a class="navbar-brand mr-auto" href="#">Alb Juris</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.php">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./php/librat.php">Books</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Subscriptions</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Profile
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="profileDropdown">
+                        <a class="dropdown-item" href="#">Log In</a>
+                        <a class="dropdown-item" href="#">Register</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
 
@@ -46,33 +46,3 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-=======
-<header>
-  <header class="header">
-    <div class="header-title"><a href="/Web_Project">Albjuris.al</a></div>
-    <link rel="stylesheet" href = "style.css">
-    <div class="header-search">
-     <form id="search-form">
-      <input id="search-input" type="text" placeholder="Search books, authors, ISBNs...">
-      <button type="submit">
-        <i class="fas fa-search"></i> Search
-      </button>
-    </form>
-    </div>
-
-    <div class="header-links">
-        
-      <a href="#">Buy Now</a>
-      <a href="/Web_Project/php/login.php">Login</a>
-
-    </div>
-</header>
-<nav>
-<ul>
-    <li><a href="#">Home</a></li>
-    <li><a href="/Web_Project/php/books.php">Books</a></li>
-    <li><a href="#">Authors</a></li>
-    <li><a href="/Web_Project/php/contact.php">Contact</a></li>
-</ul>
-</nav>
->>>>>>> e562866687f3e0c292203efc56f2384e9cfe81a9
