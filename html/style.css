@@ -169,8 +169,4 @@ html, body {
   min-height: 100%;
   position: relative;
   width: 100%;
-}
-
-  .content {
-  padding-bottom: 50px; /* Height of the footer */
-  }
+}  
