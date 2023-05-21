@@ -5,7 +5,7 @@ require '../html/header.php';
 
 // Check if the user is already logged in
 if (isset($_SESSION['email'])) {
-    header("Location: profile.php");
+    header("Location: dashboard.php");
     exit();
 }
 
@@ -34,7 +34,7 @@ if (isset($_POST['email'])) {
                 header("Location: admin.php");
                 exit();
             } else */
-            header("Location: profile.php");
+            header("Location: dashboard.php");
             exit();
 
         } else {

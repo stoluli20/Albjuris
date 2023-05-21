@@ -43,7 +43,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand mr-auto" href="./">Alb Juris</a>
+            <a class="navbar-brand mr-auto" href="/Web_Project">Alb Juris</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -51,13 +51,13 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="./">Home</a>
+                        <a class="nav-link" href="/Web_Project">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./php/librat.php">Books</a>
+                        <a class="nav-link" href="/Web_Project/php/librat.php">Books</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./php/subscriptions.php">Subscriptions</a>
+                        <a class="nav-link" href="/Web_Project/php/subscriptions.php">Subscriptions</a>
                     </li>
                     <li class="nav-item dropdown">
                         <?php
@@ -71,8 +71,8 @@
                                 Profile
                             </a>
                             <div class="dropdown-menu" aria-labelledby="profileDropdown">
-                                <a class="dropdown-item" href="./php/dashboard.php">Dashboard</a>
-                                <a class="dropdown-item" href="./php/logout.php">Log Out</a>
+                                <a class="dropdown-item" href="/Web_Project/php/dashboard.php">Dashboard</a>
+                                <a class="dropdown-item" href="/Web_Project/php/logout.php">Log Out</a>
                             </div>';
                         } else {
                             // User is not logged in, display "Log In" and "Register"
@@ -82,8 +82,8 @@
                                 Profile
                             </a>
                             <div class="dropdown-menu" aria-labelledby="profileDropdown">
-                                <a class="dropdown-item" href="./php/login.php">Log In</a>
-                                <a class="dropdown-item" href="./php/register.php">Register</a>
+                                <a class="dropdown-item" href="/Web_Project/php/login.php">Log In</a>
+                                <a class="dropdown-item" href="/Web_Project/php/register.php">Register</a>
                             </div>';
                         }
                         ?>
