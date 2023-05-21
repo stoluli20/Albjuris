@@ -1,4 +1,5 @@
 <?php
+<<<<<<< Updated upstream
 session_start();
 include __DIR__.'/../database/db_connection.php';
 $error="";
@@ -52,4 +53,141 @@ if(isset($_REQUEST['login']))
 </div>
         <?php require __DIR__ . '/../html/footer.html'; ?>
     </body>
+=======
+
+?>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-4">
+                <div id="tasks-box">
+                    <h5>Menu</h5>
+                    <ul class="list-group">
+                        <li class="list-group-item"><a href="admin.php">Shto liber</li></a>
+                        <li class="list-group-item"><a href="#">Shiko users</li></a>
+                    </ul>
+                </div>
+            </div>
+
+            <?php
+
+            require('db.php');
+
+            // When form submitted, insert values into the database.
+            if (isset($_POST['submit'])) {
+                $filename = $_FILES["image"]["name"];
+                $tempname = $_FILES["image"]["tmp_name"];
+         
+             
+
+                $pdf = $_FILES["pdf"]["name"];
+                $tempname1 = $_FILES["pdf"]["tmp_name"];
+              
+              
+
+
+                $title = stripslashes($_REQUEST['title']);
+                $author = stripslashes($_REQUEST['author']);
+                $category = stripslashes($_REQUEST['category']);
+                $isbn = stripslashes($_REQUEST['isbn']);
+                $description = stripslashes($_REQUEST['description']);
+                // $ava = stripslashes($_REQUEST['avail']);
+                $year = stripslashes($_REQUEST['year']);
+
+
+
+                $sql = "SELECT * from books where title='$title'";
+                $res = mysqli_query($con, $sql);
+
+                if (mysqli_num_rows($res) > 0) {
+
+                    $row = mysqli_fetch_assoc($res);
+                    if ($title == isset($row['title'])) {
+                        ?>
+                        <div class='form'>
+                            <h3>Libri eshte ne databaze</h3><br>
+                        </div>
+                        <?php
+                    }
+
+                } else {
+                    $folder = "/Applications/XAMPP/xamppfiles/htdocs/Albjuris/file/$pdf";
+                    move_uploaded_file($tempname, $folder);
+                    $folder = "/Applications/XAMPP/xamppfiles/htdocs/Albjuris/images/$filename";
+                    move_uploaded_file($tempname1, $folder);
+                    $query = "INSERT into `books` (id, isbn, title, author, description, year, cat, image, pdf) VALUES ('0','$isbn','$title', '$author', '$description','$year','$category','$filename','$pdf')";
+                    $result = mysqli_query($con, $query);
+
+                    if ($result) {
+
+                        ?>
+                      
+
+                            <div class='form'>
+                                <h3>Libri u regjistrua</h3><br>
+                            </div>
+
+                        
+
+                        <?php
+                    }else{
+                        ?>
+                      
+
+                        <div class='form'>
+                            <h3>Nodhi nje problem</h3><br>
+                        </div>
+
+                    </div>
+                    <?php
+
+                    }
+
+
+                }
+
+            } else {
+                ?>
+
+                <div id="book-form">
+                    <form class="form" action="" method="post" enctype="multipart/form-data">
+                        <h1 class="login-title">Shto Liber</h1>
+                        <input type="text" class="form-control" name="title" placeholder="Titulli" required />
+                        <div class="custom-file mb-3">
+                            <input type="file" class="custom-file-input" id="customFile" accept=".jpeg,.jpg,.png" name="image">
+                            <label class="custom-file-label" for="customFile">Zgjidh imazhin </label>
+                        </div>
+                        <div class="custom-file mb-3">
+                            <input type="file" class="custom-file-input" id="customFile" accept=".pdf" name="pdf">
+                            <label class="custom-file-label" for="customFile">Zgjidh Pdf</label>
+                        </div>
+                        <input type="text" class="form-control" name="author" placeholder="Autor" required>
+                        <input type="text" class="form-control" name="isbn" placeholder="ISBN" required>
+                        <input type="text" class="form-control" name="category" placeholder="Kategori" required>
+                        <textarea class="form-control" name="description" placeholder="Pershkrimi" required></textarea>
+                        <!-- <input type="text" class="form-control" name="avail" placeholder="Availabilitiy" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required> -->
+                        <input type="text" class="form-control" name="year" placeholder="Year" maxlength="4"
+                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required>
+                        <div class="center">
+                        <input type="submit" name="submit" value="Shto" class="btn btn-primary"
+                            style="margin-bottom:10px;border-radius:3px" required>
+            </div>
+                    </form>
+
+
+                </div>
+                <?php
+            }
+            ?>
+</body>
+
+<script>
+    // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>
+
+>>>>>>> Stashed changes
 </html>
