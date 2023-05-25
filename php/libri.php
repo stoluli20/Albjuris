@@ -131,10 +131,16 @@
                                         <?php echo $row['description'] ?>
                                     </p>
                                     <div class="center">
-                                        <button class="btn btn-outline-primary my-2 my-sm-0"><a
-                                                href="open.php?id=<?php echo $row['id'] ?>" class="noline">Open</a></button>
-                                        <button class="btn btn-outline-primary my-2 my-sm-0" style="margin:10px"><a
-                                                href="preview.php?id=<?php echo $row['id'] ?>"
+                                        <?php
+                                    if(isset($_SESSION['email'])){
+                                        ?>
+                                        <button class="btn btn-outline-primary my-2 my-sm-0"><a target="_blank"
+                                                href="/Web_Project/open.php?id=<?php echo $row['id'] ?>" class="noline">Open</a></button>
+                                        <?php
+                                    }
+                                    ?>
+                                        <button class="btn btn-outline-primary my-2 my-sm-0" style="margin:10px"><a target="_blank"target="_blank"target="_blank"
+                                                href="/Web_Project/preview.php?id=<?php echo $row['id'] ?>"
                                                 class="noline">Preview</a></button>
                                     </div>
                                 </div>

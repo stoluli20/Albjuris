@@ -20,15 +20,8 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
     <style>
-        * {
-            margin: 20px;
-            padding: 0;
-        }
-
-        .top-bar {
-            background: #333;
-            color: #fff;
-            padding: 1rem;
+        body {
+            background-color: ghostwhite;
         }
 
         .btn {
@@ -53,36 +46,57 @@
             color: #fff;
             padding: 1rem;
         }
+
+        .container {
+            display: flex;
+            justify-content: center;
+        }
+
+        #pdf-render {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .page-info {
+            color: white;
+        }
     </style>
-    <title>PDF Viewer</title>
+    <title>Preview</title>
 </head>
 
 <body>
 
-    <div class="top-bar">
-        <div class="wrapper">
-            <button class="btn" id="prev-page">
-                <i class="fas fa-arrow-circle-left"></i> Prev Page
-            </button>
-            <button class="btn" id="next-page">
-                Next Page <i class="fas fa-arrow-circle-right"></i>
-            </button>
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" style="color:white">Preview</a>
+
+        <div id="navbarNav">
+
+            <button class="btn btn-light mr-2" id="prev-page"><i class="fas fa-arrow-circle-left"></i>Para</button>
+
+
+            <button class="btn btn-light  mr-2" id="next-page">Pas<i class="fas fa-arrow-circle-right"></i></button>
+
             <span class="page-info">
-                Page <span id="page-num"></span> of <span id="page-count"></span>
+                Faqja <span id="page-num"></span> nga <span id="page-count"></span>
             </span>
         </div>
-        <?php
-        require 'db.php';
-        if (isset($_GET['id'])) {
-            $id = $_GET['id'];
-            $query = mysqli_query($con, "Select * from books where id='$id'");
-            $row = mysqli_fetch_array($query);
+    </nav>
 
-        }
-        ?>
+    <?php
+    require '/var/www/html/Web_Project/php/db.php';
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+        $query = mysqli_query($con, "Select * from books where id='$id'");
+        $row = mysqli_fetch_array($query);
 
+    }
+    ?>
+
+    <div class="container">
         <input type="hidden" id="pdf" value="file/<?php echo $row['pdf'] ?>">
         <canvas id="pdf-render"></canvas>
+    </div>
+
     </div>
 
     <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>

@@ -56,7 +56,7 @@
 
 <body>
 <?php
-require "nav.php";
+require __DIR__. "/../html/header.php";
 ?>
 
     <div class="container mt-4">
@@ -73,18 +73,18 @@ require "nav.php";
 
             <?php
 
-            require('db.php');
+            include('db.php');
 
             // When form submitted, insert values into the database.
             if (isset($_POST['submit'])) {
                 $filename = $_FILES["image"]["name"];
                 $tempname = $_FILES["image"]["tmp_name"];
-                $folder = "/Applications/XAMPP/xamppfiles/htdocs/alb/images/$filename";
+                $folder = "/var/www/html/Web_Project/images/$filename";
                 move_uploaded_file($tempname, $folder);
 
                 $pdf = $_FILES["pdf"]["name"];
                 $tempname1 = $_FILES["pdf"]["tmp_name"];
-                $folder = "/Applications/XAMPP/xamppfiles/htdocs/alb/file/$pdf";
+                $folder = "/var/www/html/Web_Project/file/$pdf";
                 move_uploaded_file($tempname1, $folder);
 
 
