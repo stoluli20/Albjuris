@@ -38,10 +38,12 @@ $userOrders = array(
 <head>
     <title>User Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+  
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" style="  margin-top: 80px;
+            margin-bottom: 80px;">
         <h1>Welcome, <?php echo $firstname; ?>!</h1>
         <h3>Your Orders:</h3>
         <table class="table">
@@ -62,7 +64,7 @@ $userOrders = array(
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <p><a href="./php/logout.php">Log Out</a></p>
+        <p><a href="logout.php">Log Out</a></p>
     </div>
 
     <!-- Include Bootstrap JS -->

@@ -3,6 +3,6 @@
     // Destroy session
     if(session_destroy()) {
         // Redirecting To Home Page
-        header("Location: /Web_Project/index.php");
+        header("Location: login.php");
     }
 ?>

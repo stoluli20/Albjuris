@@ -15,8 +15,10 @@ include 'db.php'; ?>
     }
 
     /* Customize carousel height */
+
     .section-books .carousel {
       height: 400px;
+
     }
 
     /* Existing styles */
@@ -144,10 +146,55 @@ include 'db.php'; ?>
     .section-about-us p {
       font-size: 18px;
       line-height: 1.6;
-      margin-bottom: 20px;
+      /* margin-bottom: 20px; */
 
       color: #fff;
     }
+
+    .caption {
+      position: absolute;
+      top: 0px;
+      color: white;
+      /* z-index: 10; */
+    }
+
+    @media (max-width: 767px) {
+      .text-smaller {
+        font-size: 80%; /* Adjust the percentage value as needed */
+      }
+    }
+
+    .text-overlay {
+    position: relative;
+}
+
+.text-content {
+  z-index: 10;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    font-family: 'Circular', sans-serif !important;
+    font-style: bold;
+}
+
+.text-content h1 {
+    font-size: 56px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.text-content p {
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+
   </style>
 
 
@@ -155,11 +202,19 @@ include 'db.php'; ?>
 
 <body>
   <!-- First Section: Full Screen Image -->
+
+ 
+
   <section class="section-fullscreen">
-    <div class="container-fluid">
-      <img src="./uploads/mainpic.jpg" alt="Full Screen Image" class="img-fluid">
+    <div class="text-overlay">
+        <div class="text-content">
+            <h1>Alb Juris</h1>
+            <p>Your path towards knowledge and professionalism.</p>
+        </div>
+        <img src="images/books.jpg" alt="Full Screen Image" class="img-fluid" width="100%" style="position:relative;top:0">
     </div>
-  </section>
+</section>
+
 
   <!-- Second Section: Carousel with Books -->
   <section class="section-books">
@@ -171,7 +226,7 @@ include 'db.php'; ?>
             <div class="d-flex justify-content-center"> <!-- Added wrapping div -->
               <?php
               // Replace 'your-database-connection' with your actual database connection code
-
+              
               // Fetch all books from the database
               $books = $con->query("SELECT * FROM books");
 
@@ -194,12 +249,15 @@ include 'db.php'; ?>
                 if ($bookCount % 3 == 0) {
                   echo '<div class="d-flex">';
                 }
-              ?>
+                ?>
                 <div class="book-card">
-                  <a href="book.php?id=<?php echo $bookId; ?>"><img src="./images/<?php echo $bookImage; ?>" alt="Book"></a>
-                  <a href="book.php?id=<?php echo $bookId; ?>" class="btn btn-primary btn-sm">Read More</a>
+                  <a href="php/libri.php?id=<?php echo $bookId; ?>"><img src="./images/<?php echo $bookImage; ?>"
+                      alt="Book"></a>
+
+                  <a href="php/libri.php?id=<?php echo $bookId ?>" class="btn btn-primary btn-sm">Read
+                    More</a>
                 </div>
-              <?php
+                <?php
                 // Close the carousel item every 3 books
                 if ($bookCount % 3 == 2) {
                   echo '</div>';
@@ -247,7 +305,8 @@ include 'db.php'; ?>
             <h5 class="card-title">Basic</h5>
             <p class="card-price">$9.99/month</p>
             <p class="card-text">1-week access to all books</p>
-            <a href="#" class="btn btn-primary">Choose Plan</a>
+            <br> <br>
+            <a href="paypal_payment/form.php?item=1&plan=9.99" class="btn btn-primary">Choose Plan</a>
           </div>
         </div>
         <div class="col-md-4">
@@ -255,7 +314,8 @@ include 'db.php'; ?>
             <h5 class="card-title">Standard</h5>
             <p class="card-price">$19.99/month</p>
             <p class="card-text">1-month access to all books and 15% discount on physical books.</p>
-            <a href="#" class="btn btn-primary">Choose Plan</a>
+            <br>
+            <a href="paypal_payment/form.php?item=1&plan=19.99" class="btn btn-primary">Choose Plan</a>
           </div>
         </div>
         <div class="col-md-4">
@@ -263,7 +323,8 @@ include 'db.php'; ?>
             <h5 class="card-title">Premium</h5>
             <p class="card-price">$49.99/month</p>
             <p class="card-text">6-month access to all books and 20% discount on physical books.</p>
-            <a href="#" class="btn btn-primary">Choose Plan</a>
+            <br>
+            <a href="paypal_payment/form.php?item=1&plan=49.99" class="btn btn-primary">Choose Plan</a>
           </div>
         </div>
       </div>
@@ -276,8 +337,10 @@ include 'db.php'; ?>
     <div class="container">
       <h2>About Us</h2>
       <p>Alb Juris is a publishing house focused on Legal Literature, but not limited to it.
-        At our place, you will find every book in the field of legal literature, up-to-date legislation, Legislation Summaries, the entire series of Codes updated with all the latest changes,
-        The Constitution with all the interpretations of the Constitutional Court, and everything else you need to have all the necessary literature.
+        At our place, you will find every book in the field of legal literature, up-to-date legislation, Legislation
+        Summaries, the entire series of Codes updated with all the latest changes,
+        The Constitution with all the interpretations of the Constitutional Court, and everything else you need to have
+        all the necessary literature.
         Our publishing house also offers the service of publishing other publications.</p>
     </div>
   </section>

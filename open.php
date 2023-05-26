@@ -20,15 +20,8 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
     <style>
-        * {
-            margin: 20px;
-            padding: 0;
-        }
-
-        .top-bar {
-            background: #333;
-            color: #fff;
-            padding: 1rem;
+        body {
+            background-color: ghostwhite;
         }
 
         .btn {
@@ -53,42 +46,71 @@
             color: #fff;
             padding: 1rem;
         }
+
+        .container {
+            display: flex;
+            justify-content: center;
+        }
+
+        #pdf-render {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .page-info {
+            color: white;
+        }
+        #overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      opacity: 0; /* Initially hidden */
+      pointer-events: none; /* Allow interaction with elements underneath */
+      transition: opacity 0.5s;
+      z-index: 9999;
+    }
     </style>
-    <title>PDF Viewer</title>
+    </style>
+    <title>Shfleto</title>
 </head>
 
-<body>
+<body id="bod">
     <?php
-    // require 'auth.php';?>
+    // xrequire 'auth.php';?>
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" style="color:white">Libri</a>
 
-    <div class="top-bar">
+        <div id="navbarNav">
 
-        <div class="wrapper">
+            <button class="btn btn-light mr-2" id="prev-page"><i class="fas fa-arrow-circle-left"></i>Para</button>
 
-            <button class="btn" id="prev-page">
-                <i class="fas fa-arrow-circle-left"></i> Prev Page
-            </button>
-            <button class="btn" id="next-page">
-                Next Page <i class="fas fa-arrow-circle-right"></i>
-            </button>
+            <button class="btn btn-light  mr-2" id="next-page">Pas<i class="fas fa-arrow-circle-right"></i></button>
+
             <span class="page-info">
-                Page <span id="page-num"></span> of <span id="page-count"></span>
+                Faqja <span id="page-num"></span> nga <span id="page-count"></span>
             </span>
         </div>
+    </nav>
 
-        <?php
-        require 'db.php';
-        if (isset($_GET['id'])) {
-            $id = $_GET['id'];
-            $query = mysqli_query($con, "Select * from books where id='$id'");
-            $row = mysqli_fetch_array($query);
 
-        }
-        ?>
-        <div class="pdf">
-            <input type="hidden" id="pdf" value="file/<?php echo $row['pdf'] ?>">
-            <canvas id="pdf-render"></canvas>
-        </div>
+    <?php
+    require '/public_html/php/db.php';
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+        $query = mysqli_query($con, "Select * from books where id='$id'");
+        $row = mysqli_fetch_array($query);
+
+    }
+    ?>
+
+    <div class="container">
+        <input type="hidden" id="pdf" value="/file/<?php echo $row['pdf'] ?>">
+        <canvas id="pdf-render"></canvas>
+    </div>
+
     </div>
     <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
     <script>
@@ -184,8 +206,17 @@
         // Button Events
         document.querySelector('#prev-page').addEventListener('click', showPrevPage);
         document.querySelector('#next-page').addEventListener('click', showNextPage);
-    </script>
 
+
+        document.addEventListener('keydown', function (event) {
+            // Check if the user presses the Print Screen key (PrtScn) or other screenshot combinations
+            if ((event.metaKey || event.ctrlKey) || event.shiftKey || event.key == '3') {
+                document.getElementById("bod").style.display = "none";
+
+            }
+        });
+</script>
+  
 </body>
 
 </html>

@@ -1,0 +1,104 @@
+<?php session_start(); ?>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .purchase{
+                text-align: right;
+                width: fit-content;
+                padding: 50px;
+                margin-top: 5%;
+                margin-left: 20%;
+                /* margin-left: auto;
+                margin-right: auto; */
+                border: 1px solid;
+                background-color:azure ;
+                float: left;
+            }
+
+            td{
+               padding: 10px;
+            }
+            .headers{
+                width:fit-content;
+                background-color: antiquewhite;
+            }
+            .paypal{
+                margin-left:auto;
+                margin-right:auto;
+            }
+            .summary{
+                border: 1px solid;
+                width: fit-content;
+                float: left;
+                margin-top: 10%;
+                margin-left: 5%;
+                padding: 20px;
+                background-color:antiquewhite;
+            }
+            .price{
+                text-align: right;
+            }
+            .end-row{
+                border-bottom: 0.5px solid;
+            }
+            #continue{
+                background-color: yellow;
+                width: 70%;
+            }
+            .purchase form{
+                margin-left: 10%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="purchase">
+            <h3 class="headers">Add shipping & order information: </h3>
+            <form>
+                <table>
+                    <tr>
+                    <td>Country</td>
+                    <td><input type="text" name="country" required ></td>
+                    </tr>
+                    <tr>
+                        <td>First Name</td>
+                        <td><input type="text" name="first_name" required ></td>
+                    </tr>
+                    <tr>
+                        <td>Last name</td>
+                        <td><input type="text" name="last_name" required ></td>
+                    </tr>
+                    <tr>
+                        <td>Adress line 1</td>
+                        <td><input type="text" name="address_1" required ></td>
+                    </tr>
+                    <tr>
+                        <td>Adress Line 2<br>(Optional)</td>
+                        <td><input type="text" name="adress_2"></td>
+                    </tr>
+                    <tr>
+                        <td>City</td>
+                        <td><input type="text" name="city" required ></td>
+                    </tr>
+                    <tr>
+                        <td>ZIP Code</td>
+                        <td><input type="text" name="zip_code" required ></td>
+                    </tr>
+                    <tr>
+                        <td>Telephone</td>
+                        <td><input type="number" name="telephone" required ></td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td><input type="email" name="email" required ></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;" colspan="2"><input id="continue" type="submit" name="continue" value="Continue"></td>
+                    </tr>
+                </table>
+            </form>
+           
+        </div>
+    </body>
+</html>

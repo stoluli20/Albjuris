@@ -24,59 +24,69 @@ if (isset($_POST['email'])) {
     $rows = mysqli_num_rows($result);
     if ($rows == 1) {
         $user = mysqli_fetch_assoc($result);
-        if (password_verify($password, $user['password'])) {
-            // Password is correct, log in the user
 
+
+        if (password_verify($password, $user['password'])) {
+            session_start();
+            // Password is correct, log in the user
             $_SESSION['email'] = $email;
-            $_SESSION['userid'] = $user['userid'];
-            /*  if ($user['email'] == "krapaj20@epoka.edu.al" ) {
+            $_SESSION['userid'] = $user['id'];
+
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['type'] = $user['type'];
+
+            if ($user['email'] == "krapaj20@epoka.edu.al") {
                 $_SESSION['admin'] = true;
                 header("Location: admin.php");
                 exit();
-            } else */
-            header("Location: dashboard.php");
+            } else
+                header("Location: dashboard.php");
             exit();
 
         } else {
-            echo "<div class='form'>
+            echo "<div class='form' style='margin-bottom:400px'>
                 <h3>Incorrect password.</h3><br/>
+               
                 <p class='link'>Click here to <a href='login.php'>try again</a>.</p>
                 </div>";
         }
     } else {
-        echo "<div class='form'>
+        echo "<div class='form' style='margin-bottom:400px'>
             <h3>Invalid username or email address.</h3><br/>
             <p class='link'>Click here to <a href='login.php'>try again</a>.</p>
             </div>";
     }
 } else {
-?>
-   <div class="container mt-4">
-    <form class="form-sm" method="post" name="login">
-    <h1 class="login-title">Log In</h1>
-        <div class="form-group row">
-            <label for="email" class="col-sm-2 col-form-label">Email Address</label>
-            <div class="col-sm-10">
-                <input type="text" name="email" id="email" class="form-control" autofocus="true" />
+    ?>
+    <div class="container mt-4" style="margin-bottom:200px">
+        <form class="form-sm" method="post" name="login" style="
+    width: 50%;
+    margin: auto;
+    margin-top:40px;
+">
+            <h1 class="login-title">Log In</h1>
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <input type="text" name="email" id="email" class="form-control" autofocus="true"
+                        placeholder="Email Address" />
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <label for="password" class="col-sm-2 col-form-label">Password</label>
-            <div class="col-sm-10">
-                <input type="password" name="password" id="password" class="form-control" />
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <input type="password" name="password" id="password" class="form-control" placeholder="Password" />
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="offset-sm-2 col-sm-10">
-                <input type="submit" value="Login" name="submit" class="btn btn-primary" />
+            <div class="form-group row">
+                <div class="offset-sm-2 col-sm-10" style="margin-left:0">
+                    <input type="submit" value="Login" name="submit" class="btn btn-primary">
+                </div>
             </div>
-        </div>
-        <p class="link text-center"><a href="register.php">New Registration</a></p>
-    </form>
-</div>
+
+        </form>
+    </div>
 
 
-<?php
+    <?php
 }
 
 require '../html/footer.html';

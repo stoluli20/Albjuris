@@ -56,7 +56,8 @@
 
 <body>
 <?php
-require "nav.php";
+
+require __DIR__. "/../html/header.php";
 ?>
 
     <div class="container mt-4">
@@ -66,25 +67,25 @@ require "nav.php";
                     <h5>Menu</h5>
                     <ul class="list-group">
                         <li class="list-group-item"><a href="admin.php">Shto liber</li></a>
-                        <li class="list-group-item"><a href="#">Shiko users</li></a>
+                        <li class="list-group-item"><a href="users.php">Shiko users</li></a>
                     </ul>
                 </div>
             </div>
 
             <?php
 
-            require('db.php');
+            include('db.php');
 
             // When form submitted, insert values into the database.
             if (isset($_POST['submit'])) {
                 $filename = $_FILES["image"]["name"];
                 $tempname = $_FILES["image"]["tmp_name"];
-                $folder = "/Applications/XAMPP/xamppfiles/htdocs/alb/images/$filename";
+                $folder = "/Applications/XAMPP/xamppfiles/htdocs/public_html/images/$filename";
                 move_uploaded_file($tempname, $folder);
 
                 $pdf = $_FILES["pdf"]["name"];
                 $tempname1 = $_FILES["pdf"]["tmp_name"];
-                $folder = "/Applications/XAMPP/xamppfiles/htdocs/alb/file/$pdf";
+                $folder = "/Applications/XAMPP/xamppfiles/htdocs/public_html/file/$pdf";
                 move_uploaded_file($tempname1, $folder);
 
 

@@ -1,0 +1,29 @@
+<title>Checkout</title>
+<style>
+    .paypal{
+        margin-left:auto;
+        margin-right:auto;
+        margin-top:10%;
+        width:30%;
+        height:50%;
+        text-align: center;
+        border: 1px solid;
+        background-color: aqua;
+        padding:20px;
+    }
+    .content{
+        margin-top: 25%;
+    }
+</style>
+<div class="paypal">
+    <div class="content">
+    <h3>Payment Method: PayPal Checkout</h3>
+    <h5>Login to your PayPal and Pay:</h5>
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="T4VPJE2BV4MJQ">
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" target="_blank" alt="PayPal - The safer, easier way to pay online!">
+        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+</div>
+</div>

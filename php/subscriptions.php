@@ -12,6 +12,10 @@
             background-color: #f8f9fa;
         }
 
+        body{
+            background-color: #f8f9fa !important;
+        }
+
         .subscription-card {
             background-color: #fff;
             border-radius: 4px;
@@ -71,6 +75,7 @@
                         <h5 class="card-title">Basic</h5>
                         <p class="card-price">$9.99/month</p>
                         <p class="card-text">1-week access to all books</p>
+                        <br>
                         <a href="#" class="btn btn-primary">Choose Plan</a>
                     </div>
                 </div>
