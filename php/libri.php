@@ -149,6 +149,7 @@
                                     </p>
                                     <div class="center">
                                         <?php
+<<<<<<< HEAD
                                         if (isset($_SESSION['plan'])) {
                                             ?>
                                             <button class="btn btn-outline-primary my-2 my-sm-0"><a target="_blank"
@@ -160,6 +161,17 @@
                                         <button class="btn btn-outline-primary my-2 my-sm-0" style="margin:10px"><a
                                                 target="_blank" target="_blank" target="_blank"
                                                 href="/public_html/preview.php?id=<?php echo $row['id'] ?>"
+=======
+                                    if(isset($_SESSION['email'])){
+                                        ?>
+                                        <button class="btn btn-outline-primary my-2 my-sm-0"><a target="_blank"
+                                                href="/Web_Project/open.php?id=<?php echo $row['id'] ?>" class="noline">Open</a></button>
+                                        <?php
+                                    }
+                                    ?>
+                                        <button class="btn btn-outline-primary my-2 my-sm-0" style="margin:10px"><a target="_blank"target="_blank"target="_blank"
+                                                href="/Web_Project/preview.php?id=<?php echo $row['id'] ?>"
+>>>>>>> bdb807b38e76cf3c93701c63e6ccbc45afcd43d1
                                                 class="noline">Preview</a></button>
                                     </div>
                                 </div>
