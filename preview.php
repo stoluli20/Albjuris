@@ -60,14 +60,11 @@
         .page-info {
             color: white;
         }
-<<<<<<< HEAD
         @media print {
     html, body {
        display: none;  /* hide whole page */
     }
 }
-=======
->>>>>>> bdb807b38e76cf3c93701c63e6ccbc45afcd43d1
     </style>
     <title>Preview</title>
 </head>
@@ -91,11 +88,7 @@
     </nav>
 
     <?php
-<<<<<<< HEAD
     require '/public_html/php/db.php';
-=======
-    require '/var/www/html/Web_Project/php/db.php';
->>>>>>> bdb807b38e76cf3c93701c63e6ccbc45afcd43d1
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
         $query = mysqli_query($con, "Select * from books where id='$id'");
@@ -105,11 +98,7 @@
     ?>
 
     <div class="container">
-<<<<<<< HEAD
         <input type="hidden" id="pdf" value="/var/www/html/public_html/file<?php echo $row['pdf'] ?>">
-=======
-        <input type="hidden" id="pdf" value="file/<?php echo $row['pdf'] ?>">
->>>>>>> bdb807b38e76cf3c93701c63e6ccbc45afcd43d1
         <canvas id="pdf-render"></canvas>
     </div>
 

@@ -56,10 +56,6 @@
 
 <body>
 <?php
-<<<<<<< HEAD
-
-=======
->>>>>>> bdb807b38e76cf3c93701c63e6ccbc45afcd43d1
 require __DIR__. "/../html/header.php";
 ?>
 
@@ -83,20 +79,12 @@ require __DIR__. "/../html/header.php";
             if (isset($_POST['submit'])) {
                 $filename = $_FILES["image"]["name"];
                 $tempname = $_FILES["image"]["tmp_name"];
-<<<<<<< HEAD
                 $folder = "/Applications/XAMPP/xamppfiles/htdocs/public_html/images/$filename";
-=======
-                $folder = "/var/www/html/Web_Project/images/$filename";
->>>>>>> bdb807b38e76cf3c93701c63e6ccbc45afcd43d1
                 move_uploaded_file($tempname, $folder);
 
                 $pdf = $_FILES["pdf"]["name"];
                 $tempname1 = $_FILES["pdf"]["tmp_name"];
-<<<<<<< HEAD
                 $folder = "/Applications/XAMPP/xamppfiles/htdocs/public_html/file/$pdf";
-=======
-                $folder = "/var/www/html/Web_Project/file/$pdf";
->>>>>>> bdb807b38e76cf3c93701c63e6ccbc45afcd43d1
                 move_uploaded_file($tempname1, $folder);
 
 

@@ -60,7 +60,6 @@
         .page-info {
             color: white;
         }
-<<<<<<< HEAD
         #overlay {
       position: fixed;
       top: 0;
@@ -73,8 +72,6 @@
       transition: opacity 0.5s;
       z-index: 9999;
     }
-=======
->>>>>>> bdb807b38e76cf3c93701c63e6ccbc45afcd43d1
     </style>
     </style>
     <title>Shfleto</title>
@@ -82,11 +79,7 @@
 
 <body id="bod">
     <?php
-<<<<<<< HEAD
     // xrequire 'auth.php';?>
-=======
-    // require 'auth.php';?>
->>>>>>> bdb807b38e76cf3c93701c63e6ccbc45afcd43d1
     <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand" style="color:white">Libri</a>
 
@@ -104,11 +97,7 @@
 
 
     <?php
-<<<<<<< HEAD
     require '/public_html/php/db.php';
-=======
-    require '/var/www/html/Web_Project/php/db.php';
->>>>>>> bdb807b38e76cf3c93701c63e6ccbc45afcd43d1
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
         $query = mysqli_query($con, "Select * from books where id='$id'");
@@ -118,11 +107,7 @@
     ?>
 
     <div class="container">
-<<<<<<< HEAD
         <input type="hidden" id="pdf" value="/file/<?php echo $row['pdf'] ?>">
-=======
-        <input type="hidden" id="pdf" value="file/<?php echo $row['pdf'] ?>">
->>>>>>> bdb807b38e76cf3c93701c63e6ccbc45afcd43d1
         <canvas id="pdf-render"></canvas>
     </div>
 
