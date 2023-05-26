@@ -7,7 +7,6 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
@@ -79,12 +78,12 @@ require __DIR__. "/../html/header.php";
             if (isset($_POST['submit'])) {
                 $filename = $_FILES["image"]["name"];
                 $tempname = $_FILES["image"]["tmp_name"];
-                $folder = "/Applications/XAMPP/xamppfiles/htdocs/public_html/images/$filename";
+                $folder = "/var/www/html/public_html/images/filename";
                 move_uploaded_file($tempname, $folder);
 
                 $pdf = $_FILES["pdf"]["name"];
                 $tempname1 = $_FILES["pdf"]["tmp_name"];
-                $folder = "/Applications/XAMPP/xamppfiles/htdocs/public_html/file/$pdf";
+                $folder = "/var/www/html/public_html/file/$pdf";
                 move_uploaded_file($tempname1, $folder);
 
 
@@ -133,7 +132,7 @@ require __DIR__. "/../html/header.php";
                       
 
                         <div class='form'>
-                            <h3>Nodhi nje problem</h3><br>
+                            <h3>Ndodhi nje problem</h3><br>
                         </div>
 
                     </div>

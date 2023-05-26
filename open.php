@@ -97,7 +97,7 @@
 
 
     <?php
-    require '/public_html/php/db.php';
+    require '//Applications/XAMPP/xamppfiles/htdocs/Web_Project/php/db.php';
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
         $query = mysqli_query($con, "Select * from books where id='$id'");
@@ -107,7 +107,7 @@
     ?>
 
     <div class="container">
-        <input type="hidden" id="pdf" value="/file/<?php echo $row['pdf'] ?>">
+        <input type="hidden" id="pdf" value="file/<?php echo $row['pdf'] ?>">
         <canvas id="pdf-render"></canvas>
     </div>
 

@@ -21,7 +21,7 @@ if (isset($_REQUEST['email'])) {
     $surname = stripslashes($_REQUEST['lastname']);
     $surname = mysqli_real_escape_string($con, $surname);
     $reg_date = date("Y-m-d H:i:s");
-
+    $expire_date = date("Y-m-d H:i:s");
     $query = "SELECT * FROM `users` WHERE email='$email'";
     $result = mysqli_query($con, $query);
     $rows = mysqli_num_rows($result);
@@ -29,8 +29,8 @@ if (isset($_REQUEST['email'])) {
         // Register new user
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         $type='user';
-        $query = "INSERT into `users` (firstname, lastname, email, username, password, reg_date, type)
-			VALUES ('$name', '$surname', '$email', '$username', '$hashed_password', '$reg_date', '$type')";
+        $query = "INSERT into `users` (firstname, lastname, email, username, password, type, dates, exipre, plan)
+			VALUES ('$name', '$surname', '$email', '$username', '$hashed_password', '$type', '$reg_date','$expire_date', 1)";
         $result = mysqli_query($con, $query);
         if ($result) {
             $_SESSION['email'] = $email;
@@ -39,7 +39,7 @@ if (isset($_REQUEST['email'])) {
         } else {
             echo "<div class='form'>
 					<h3>Registration failed.</h3><br/>
-					<p class='link'>Click here to <a href='signup.php'>try again</a>.</p>
+					<p class='link'>Click here to <a href='register.php'>try again</a>.</p>
 					</div>";
         }
     } else {

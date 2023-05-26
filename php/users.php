@@ -91,7 +91,7 @@
                     <?php
                     if (isset($_POST['seearch'])) {
                         $s = $_POST['search'];
-                        $sql = "select * from users where id='$s' or firstname like '%$s%' or lastname like '%$s%' ";
+                        $sql = "select * from users where id='$s' or email like '%$s%' or lastname like '%$s%' ";
                     } else
                         $sql = "select * from users";
 

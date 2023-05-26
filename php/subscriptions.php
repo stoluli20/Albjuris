@@ -73,26 +73,26 @@
                 <div class="col-md-4">
                     <div class="subscription-card">
                         <h5 class="card-title">Basic</h5>
-                        <p class="card-price">$9.99/month</p>
+                        <p class="card-price">$2.99/month</p>
                         <p class="card-text">1-week access to all books</p>
                         <br>
-                        <a href="#" class="btn btn-primary">Choose Plan</a>
+                        <a href="paypal_payment/form.php?item=1&plan=2.99" class="btn btn-primary">Choose Plan</a>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="subscription-card">
                         <h5 class="card-title">Standard</h5>
-                        <p class="card-price">$19.99/month</p>
+                        <p class="card-price">$14.99/month</p>
                         <p class="card-text">1-month access to all books and 15% discount on physical books.</p>
-                        <a href="#" class="btn btn-primary">Choose Plan</a>
+                        <a href="paypal_payment/form.php?item=1&plan=14.99" class="btn btn-primary">Choose Plan</a>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="subscription-card">
                         <h5 class="card-title">Premium</h5>
-                        <p class="card-price">$49.99/month</p>
+                        <p class="card-price">$44.99/month</p>
                         <p class="card-text">6-month access to all books and 20% discount on physical books.</p>
-                        <a href="#" class="btn btn-primary">Choose Plan</a>
+                        <a href="paypal_payment/form.php?item=1&plan=44.99" class="btn btn-primary">Choose Plan</a>
                     </div>
                 </div>
             </div>

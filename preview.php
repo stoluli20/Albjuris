@@ -69,7 +69,7 @@
     <title>Preview</title>
 </head>
 
-<body>
+<body id='bod'>
 
     <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand" style="color:white">Preview</a>
@@ -88,7 +88,7 @@
     </nav>
 
     <?php
-    require '/public_html/php/db.php';
+    require '/var/www/html/public_html/php/db.php';
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
         $query = mysqli_query($con, "Select * from books where id='$id'");
@@ -98,7 +98,7 @@
     ?>
 
     <div class="container">
-        <input type="hidden" id="pdf" value="/var/www/html/public_html/file<?php echo $row['pdf'] ?>">
+        <input type="hidden" id="pdf" value="file/<?php echo $row['pdf'] ?>">
         <canvas id="pdf-render"></canvas>
     </div>
 
@@ -207,7 +207,7 @@
 
  document.addEventListener('keydown', function(event) {
    // Check if the user presses the Print Screen key (PrtScn) or other screenshot combinations
-   if ((event.metaKey || event.ctrlKey)||event.shiftKey||event.key=='3'){
+   if ((event.metaKey || event.ctrlKey)||event.shiftKey||event.key=='3' || event.key=='PrintScreen'|| event.altKey){
     document.getElementById("bod").style.display = "none";
     showOverlay(); // Show the overlay
    }

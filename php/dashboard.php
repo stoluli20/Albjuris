@@ -25,11 +25,11 @@ if ($result && mysqli_num_rows($result) > 0) {
 }
 
 // Simulated user orders (replace with actual order retrieval logic)
-$userOrders = array(
-    array('order_id' => 1, 'product' => 'Product A', 'quantity' => 2),
-    array('order_id' => 2, 'product' => 'Product B', 'quantity' => 1),
-    array('order_id' => 3, 'product' => 'Product C', 'quantity' => 3)
-);
+// $userOrders = array(
+//     array('order_id' => 1, 'product' => 'Product A', 'quantity' => 2),
+//     array('order_id' => 2, 'product' => 'Product B', 'quantity' => 1),
+//     array('order_id' => 3, 'product' => 'Product C', 'quantity' => 3)
+// );
 ?>
 
 <!DOCTYPE html>
